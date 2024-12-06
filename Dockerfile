@@ -6,6 +6,9 @@ WORKDIR /app
 # Copia os arquivos para o contêiner
 COPY . /app
 
+COPY ./templates/index.html
+
+
 # Instala as dependências
 RUN pip install -r requirements.txt
 

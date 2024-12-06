@@ -6,7 +6,8 @@ import os
 from pymongo import MongoClient
 import time
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='/templates/index.html')
+
 
 # Configuração do MongoDB
 client = MongoClient('mongodb+srv://alan:123@cluster0.z5foh.mongodb.net/?retryWrites=true&w=majority')
