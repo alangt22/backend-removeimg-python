@@ -49,8 +49,7 @@ def remove_bg():
     
     images_collection.insert_one(image_info)
 
-    return render_template('index.html', image_url=output_path)  # Certifique-se de passar a URL corretamente
-
+    return render_template('index.html', image_url=output_path)
 
 def cleanup_images():
     """Limpar imagens e documentos no MongoDB após 1 hora"""
@@ -70,10 +69,7 @@ def cleanup_images():
         images_collection.delete_one({'_id': image['_id']})  # Exclui o documento do MongoDB
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0', port=int(os.getenv('PORT', 5000)))
-
-
-
+    app.run(debug=True)
 
     # Agendar a limpeza das imagens antigas a cada 30 minutos
     from threading import Timer
