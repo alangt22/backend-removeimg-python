@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remover Fundo da Imagem</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+
+</head>
+<body>
+    <section>
+        <div class="container">
+            <h1>Remover Fundo da Imagem</h1>
+            <form action="https://backend-removeimg-python-production.up.railway.app/remove-bg" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" accept="image/*" required>
+                <br>
+                <button type="submit">Remover Fundo</button>
+            </form>
+    
+            <div id="result" class='container_img'>
+                {% if image_url %}
+                    <h2>Imagem sem fundo</h2>
+                    <img src="{{ image_url }}" alt="Imagem Processada">
+                    <br>
+                    <a href="{{ image_url }}" download="output.png">
+                        <button>Baixar Imagem</button>
+                    </a>
+                {% else %}
+                    <p>Sem imagem processada. Tente enviar uma imagem para remover o fundo.</p>
+                {% endif %}
+            </div>
+            
+            
+        </div>
+    </section>
+</body>
+</html>
