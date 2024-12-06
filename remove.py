@@ -49,7 +49,8 @@ def remove_bg():
     
     images_collection.insert_one(image_info)
 
-    return render_template('index.html', image_url=output_path)
+    return render_template('index.html', image_url=output_path)  # Certifique-se de passar a URL corretamente
+
 
 def cleanup_images():
     """Limpar imagens e documentos no MongoDB após 1 hora"""
