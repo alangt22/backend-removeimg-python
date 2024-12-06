@@ -6,7 +6,7 @@ WORKDIR /app
 # Copia os arquivos para o contêiner
 COPY . /app
 
-COPY ./templates/index.html
+COPY ./templates
 
 
 # Instala as dependências
