@@ -5,33 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remover Fundo da Imagem</title>
     <link rel="stylesheet" href="./static/css/style.css">
-
 </head>
 <body>
     <section>
         <div class="container">
             <h1>Remover Fundo da Imagem</h1>
-            <form action="https://backend-removeimg-python-production.up.railway.app/remove-bg" method="POST" enctype="multipart/form-data">
+            <form action="/remove-bg" method="POST" enctype="multipart/form-data" id="uploadForm">
                 <input type="file" name="file" accept="image/*" required>
                 <br>
-                <button type="submit">Remover Fundo</button>
+                <button type="submit" id="submitButton">
+                    Remover Fundo
+                    <div class="loader" id="loaderSubmit"></div>
+                </button>
             </form>
     
-            <div id="result" class='container_img'>
+            <div id="result" class="container_img">
                 {% if image_url %}
                     <h2>Imagem sem fundo</h2>
                     <img src="{{ image_url }}" alt="Imagem Processada">
                     <br>
                     <a href="{{ image_url }}" download="output.png">
-                        <button>Baixar Imagem</button>
+                        <button id="downloadButton">
+                            Baixar Imagem
+                            <div class="loader" id="loaderDownload"></div>
+                        </button>
+                    </a>
+                    <br>
+                    <a href="/">
+                        <button type="button" id="newImageButton">
+                            Gerar Nova IMG
+                            <div class="loader" id="loaderNewImage"></div>
+                        </button>
                     </a>
                 {% else %}
                     <p>Sem imagem processada. Tente enviar uma imagem para remover o fundo.</p>
                 {% endif %}
             </div>
-            
-            
         </div>
     </section>
+
+  
+    <script>
+        const form = document.getElementById('uploadForm');
+        const submitButton = document.getElementById('submitButton');
+        const loaderSubmit = document.getElementById('loaderSubmit');
+        const downloadButton = document.getElementById('downloadButton');
+        const loaderDownload = document.getElementById('loaderDownload');
+        const newImageButton = document.getElementById('newImageButton');
+        const loaderNewImage = document.getElementById('loaderNewImage');
+
+       
+        function showLoader(button, loader) {
+            button.disabled = true;
+            loader.style.display = 'inline-block';
+        }
+
+        
+        function hideLoader(button, loader) {
+            button.disabled = false;
+            loader.style.display = 'none';
+        }
+
+        
+        form.addEventListener('submit', function(event) {
+            showLoader(submitButton, loaderSubmit);
+        });
+
+        
+        downloadButton.addEventListener('click', function(event) {
+            showLoader(downloadButton, loaderDownload);
+            
+            setTimeout(() => hideLoader(downloadButton, loaderDownload), 2000);
+        });
+
+        
+        newImageButton.addEventListener('click', function(event) {
+            showLoader(newImageButton, loaderNewImage);
+            
+            setTimeout(() => hideLoader(newImageButton, loaderNewImage), 2000);
+        });
+    </script>
 </body>
 </html>
