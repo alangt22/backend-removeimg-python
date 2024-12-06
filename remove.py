@@ -69,7 +69,8 @@ def cleanup_images():
         images_collection.delete_one({'_id': image['_id']})  # Exclui o documento do MongoDB
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=os.getenv('PORT', 8080))
+
 
     # Agendar a limpeza das imagens antigas a cada 30 minutos
     from threading import Timer
