@@ -1,3 +1,4 @@
 web: python remove.py
-gunicorn remove:app
+web: gunicorn remove:app
+
 
